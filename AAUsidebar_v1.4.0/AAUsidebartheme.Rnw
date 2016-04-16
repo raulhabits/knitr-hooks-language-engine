@@ -195,18 +195,18 @@
  \centering
  \begin{tabular}{|c|c|c|}
  \hline Language & Engine & Code argument \\ 
- \hline Python & python & -e \\ 
+ \hline Python & python & -c \\ 
  \hline Ruby & ruby & -e \\ 
  \hline \(g\)awk & \(g\)awk & -e \\ 
  \hline sed & sed & -e \\ 
- \hline shell & sh/bash/zsh & -e \\ 
+ \hline shell & sh/bash/zsh & -c \\ 
  \hline Perl & perl & -e \\ 
  \hline Haskell & haskell & -e \\ 
  \hline CoffeeScript & coffee & -e \\ 
  \hline Groovy & groovy & -e \\ 
  \hline Node.js & node & -e \\ 
  \hline Scala & scala & -e \\ 
- \hline SAS & sas & -e \\ 
+ \hline SAS & sas & -SYSIN \\ 
  \hline
  \end{tabular} 
 \end{table}
