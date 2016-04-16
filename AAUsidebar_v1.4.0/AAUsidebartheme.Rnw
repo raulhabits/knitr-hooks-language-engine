@@ -213,8 +213,8 @@
 \end{frame}
 %%%%%%%%%%%%%%%%
 
-\subsection{Ejemplo C++}
-\begin{frame}{Ejemplo C++}
+\subsection{C++ example}
+\begin{frame}{C++ example}
   <<cpp-example-fibonacci, child='cpp-example-fibonacci.Rnw', include=TRUE, echo=TRUE>>=
   @
 \end{frame}
