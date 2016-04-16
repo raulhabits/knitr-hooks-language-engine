@@ -1,0 +1,3 @@
+<<available-hooks, echo=TRUE>>=
+names(knit_hooks$get(default = TRUE))
+@

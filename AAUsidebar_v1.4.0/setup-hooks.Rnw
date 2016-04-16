@@ -1,0 +1,16 @@
+<<setup-hooks>>=
+ if (!"knitr" %in% installed.packages())
+  install.packages("knitr")
+ knit_hooks$set(customizePlot = function(before, options, envir){
+  if (before){
+   "\\begin{figure}"
+   " \\centering"
+   par(bg=options$plotColor)
+  }else{
+   paste("\\label{",options$figName,"}")
+   "\\end{figure}"
+   par(bg=NULL)
+  }
+  return()
+ })
+@

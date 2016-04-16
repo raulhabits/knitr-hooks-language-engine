@@ -1,0 +1,16 @@
+
+\begin{figure}[ht]
+ \subfigure[Using the hook]{
+  <<using-hook, customizePlot=TRUE, plotColor="yellow", include=TRUE, out.width="1.5in", echo=FALSE>>=
+   plot(1:10)
+  @
+ }
+\subfigure[Without using the hook]{
+  <<without-hook, include=TRUE, out.width="1.5in", echo=FALSE>>=
+   plot(1:10)
+  @
+ }
+\end{figure}
+
+
+

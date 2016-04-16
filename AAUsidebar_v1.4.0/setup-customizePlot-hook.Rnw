@@ -1,0 +1,15 @@
+<<setup-hooks-customizePlot, echo = TRUE>>=
+options(java.parameters="-Xmx2048m")
+ if (!"knitr" %in% installed.packages())
+  install.packages("knitr")
+ library(knitr)
+ knit_hooks$set(customizePlot = function(before, options, envir){
+ par(mar=c(1,1,1,1))
+  if (before){
+   par(bg=options$plotColor)
+  }else{
+   par(bg=NULL)
+  }
+  return()
+ })
+@

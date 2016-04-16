@@ -1,0 +1,228 @@
+\documentclass[10pt]{beamer}
+\usetheme[left]{AAUsidebar}
+
+% If you want to change the colors of the various elements in the theme, edit and uncomment the following lines
+% Change the bar and sidebar colors:
+%\setbeamercolor{AAUsidebar}{fg=red!20,bg=red}
+%\setbeamercolor{sidebar}{bg=red!20}
+% Change the color of the structural elements:
+%\setbeamercolor{structure}{fg=red}
+% Change the frame title text color:
+%\setbeamercolor{frametitle}{fg=blue}
+% Change the normal text color background:
+%\setbeamercolor{normal text}{bg=gray!10}
+% ... and you can of course change a lot more - see the beamer user manual.
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{helvet}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{subfigure}
+
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{green},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+
+% colored hyperlinks
+\newcommand{\chref}[2]{%
+  \href{#1}{{\usebeamercolor[bg]{AAUsidebar}#2}}%
+}
+
+\title[KNITR, Hooks and Language Engines]% optional, use only with long paper titles
+{KNITR, Hooks and Language Engines}
+
+\subtitle{v.\ 1.4.0}  % could also be a conference name
+
+\date{\today}
+
+\author[Raul Alejandro Buitrago Castellanos] % optional, use only with lots of authors
+{
+  Raul Alejandro Buitrago Castellanos\\
+  \href{mailto:raulhabits@gmail.com}{{\tt raulhabits@gmail.com}}
+}
+% - Give the names in the same order as they appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation. See the beamer manual for an example
+
+\institute[
+%  {\includegraphics[scale=0.2]{aau_segl}}\\ %insert a company, department or university logo
+  Maestria en ciencias de la informacion y las comunicaciones, con enfasis en ingenieria de software\\
+  Universidad Distrital Francisco Jose de Caldas\\
+  Colombia
+] % optional - is placed in the bottom of the sidebar on every slide
+{% is placed on the title page
+  Maestria en ciencias de la informacion y las comunicaciones, con enfasis en ingenieria de software\\
+  Universidad Distrital Francisco Jose de Caldas\\
+  Colombia
+  
+  %there must be an empty line above this line - otherwise some unwanted space is added between the university and the country (I do not know why;( )
+}
+
+
+% specify a logo on the titlepage (you can specify additional logos an include them in 
+% institute command below
+\pgfdeclareimage[height=1.5cm]{titlepagelogo}{AAUgraphics/aau_logo_new} % placed on the title page
+%\pgfdeclareimage[height=1.5cm]{titlepagelogo2}{graphics/aau_logo_new} % placed on the title page
+\titlegraphic{% is placed on the bottom of the title page
+  \pgfuseimage{titlepagelogo}
+%  \hspace{1cm}\pgfuseimage{titlepagelogo2}
+}
+
+
+\begin{document}
+% the titlepage
+{\aauwavesbg%
+\begin{frame}[plain,noframenumbering] % the plain option removes the sidebar and header from the title page
+  \titlepage
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+
+% TOC
+\begin{frame}{Agenda}{}
+\tableofcontents
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+% motivation for creating this theme
+\begin{frame}{Introduction}{}
+ This conference is related with the use of \alert{Hooks} and \alert{Language engines} on KNITR.
+ \begin{itemize}
+  \item<1-> Meeting, understanding, creating, and using the Chunk Hooks.
+  \item<2-> Working with language engines.
+ \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\section{Hooks}
+% the license
+\subsection{Description}
+\begin{frame}{Description}
+ The hooks are a way to increase the capability of KNITR, providing programming options and tools to customize the code execution.
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{Hook Types}
+\begin{frame}{Hook Types}
+ The hooks are classified in two kinds according with the propose, 
+ \begin{enumerate}
+  \item {\tt Chunk Hooks} Set of defined behaviors that can be included in the chunk expressions when are declared.
+  \item {\tt Output Hooks}
+ \end{enumerate}
+ \pause
+ \begin{block}{Goal}
+  Customize the project creating and using Chunk Hooks.
+ \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\subsection{Chunk Hooks}
+\begin{frame}{Description}
+ \begin{block}{Structure}
+  \begin{enumerate}
+   \item begin,
+   \item options, and
+   \item envir (environment).
+  \end{enumerate}
+ \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\subsection{Creation of a Chunk Hook}
+\begin{frame}{Declaration}
+ <<setup, child='setup-customizePlot-hook.Rnw', echo=FALSE, results='asis', warning=FALSE, include=FALSE>>=  
+ @
+ \lstinputlisting{setup-customizePlot-hook.Rnw}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\subsection{Using a Chunk Hook}
+\begin{frame}{Using a Chunk Hook}
+ \lstinputlisting{invoke-customizePlot-hook.Rnw}
+\end{frame}
+%%%%%%%%%%%%%%%%
+\subsection{Plot using a Chunk Hook}
+\begin{frame}{Plot using a Chunk Hook}
+ <<plot-customizePlot-hook, child='invoke-customizePlot-hook.Rnw', warning=FALSE>>=  
+ @
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\section{Language engines}
+% the license
+\subsection{Language engines}
+\begin{frame}{Description}
+ \begin{itemize}
+  \item Until this moment the focus has been R, because it's one of the most popular tool to work with statistics, data mining, big data, machine learning, and others.
+   
+  \item But the reality is that R isn't the only one programming language used in reproducible research and KNITR provide us a set of available languages to integrate in the document.
+ \end{itemize}
+ 
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{Default available languages}
+\begin{frame}{Default available languages}
+\begin{table}
+ \centering
+ \begin{tabular}{|c|c|c|}
+ \hline Language & Engine & Code argument \\ 
+ \hline Python & python & -e \\ 
+ \hline Ruby & ruby & -e \\ 
+ \hline \(g\)awk & \(g\)awk & -e \\ 
+ \hline sed & sed & -e \\ 
+ \hline shell & sh/bash/zsh & -e \\ 
+ \hline Perl & perl & -e \\ 
+ \hline Haskell & haskell & -e \\ 
+ \hline CoffeeScript & coffee & -e \\ 
+ \hline Groovy & groovy & -e \\ 
+ \hline Node.js & node & -e \\ 
+ \hline Scala & scala & -e \\ 
+ \hline SAS & sas & -e \\ 
+ \hline
+ \end{tabular} 
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\subsection{Ejemplo C++}
+\begin{frame}{Ejemplo C++}
+  <<cpp-example-fibonacci, child='cpp-example-fibonacci.Rnw', include=TRUE, echo=TRUE>>=
+  @
+\end{frame}
+
+{\aauwavesbg
+\begin{frame}[plain,noframenumbering]
+  \finalpage{Thank you}
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+\end{document}
